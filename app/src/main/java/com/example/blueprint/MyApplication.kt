@@ -5,10 +5,8 @@ import android.os.StrictMode
 import android.os.StrictMode.VmPolicy
 import android.provider.Settings
 import android.provider.Settings.Global.DEVELOPMENT_SETTINGS_ENABLED
-import androidx.viewbinding.BuildConfig
 import timber.log.Timber
 import timber.log.Timber.DebugTree
-
 
 class MyApplication : Application() {
     override fun onCreate() {

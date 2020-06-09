@@ -17,6 +17,12 @@ android {
         resConfigs "en" // remove unused alternative resources
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
     }
 
     // For shared test cases run by espresso
@@ -69,14 +75,14 @@ android {
     testOptions.unitTests {
         includeAndroidResources = true
 
-        all{
+        all {
             testLogging {
                 events 'skipped', 'failed', 'standardOut', 'standardError'
             }
         }
     }
 
-    buildFeatures{
+    buildFeatures {
         viewBinding = true
         dataBinding = true
     }
@@ -120,7 +126,6 @@ dependencies {
 
     // Architecture Components: viewModel and liveData
     def archLifecycleVersion = '2.2.0'
-    implementation "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$archLifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$archLifecycleVersion"
 
@@ -143,9 +148,6 @@ dependencies {
     implementation "com.squareup.moshi:moshi:$moshiVersion"
     implementation "com.squareup.moshi:moshi-kotlin:$moshiVersion"
     kapt "com.squareup.moshi:moshi-kotlin-codegen:${moshiVersion}"
-
-    // Joda time for processing time
-    implementation 'joda-time:joda-time:2.10'
 
     // Timber for Logging
     implementation 'com.jakewharton.timber:timber:4.7.1'

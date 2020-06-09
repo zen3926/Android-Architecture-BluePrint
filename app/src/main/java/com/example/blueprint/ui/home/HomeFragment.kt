@@ -12,7 +12,7 @@ import com.example.blueprint.R
 
 class HomeFragment : Fragment() {
 
-    private val homeViewModel: HomeViewModel by viewModels<HomeViewModel>()
+    private val homeViewModel: HomeViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
