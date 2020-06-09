@@ -1,10 +1,15 @@
 <resources>
-    <string name="app_name">BluePrint</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="app_name" translatable="false">BluePrint</string>
+    <string name="nav_header_title">Android Architecture BluePrint</string>
+    <string name="nav_header_subtitle" translatable="false">gzn3926@gmail.com</string>
     <string name="nav_header_desc">Navigation header</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="label_welcome">Welcome</string>
+    <string name="label_read">Read Me</string>
+    <string name="label_login">Login</string>
+    <string name="label_registration">Sign up</string>
+    <string name="label_home">Home</string>
+    <string name="label_fund">Add Fund</string>
+    <string name="label_product">Purchase Product</string>
+    <string name="label_share">Share</string>
 </resources>

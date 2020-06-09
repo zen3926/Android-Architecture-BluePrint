@@ -3,23 +3,64 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_welcome">
 
     <fragment
         android:id="@+id/nav_home"
         android:name="com.example.blueprint.ui.home.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
-
+        android:label="@string/label_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_nav_home_to_fundFragment"
+            app:destination="@id/fundFragment" />
+        <action
+            android:id="@+id/action_nav_home_to_productFragment"
+            app:destination="@id/productFragment" />
+    </fragment>
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.blueprint.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
-
+        android:id="@+id/nav_read"
+        android:name="com.example.blueprint.ui.read.ReadFragment"
+        android:label="@string/label_read"
+        tools:layout="@layout/fragment_read" />
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.blueprint.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_welcome"
+        android:name="com.example.blueprint.ui.welcome.WelcomeFragment"
+        android:label="@string/label_welcome"
+        tools:layout="@layout/fragment_welcome" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.blueprint.ui.login.LoginFragment"
+        android:label="@string/label_login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.example.blueprint.ui.registration.RegistrationFragment"
+        android:label="@string/label_registration"
+        tools:layout="@layout/fragment_registration" />
+    <fragment
+        android:id="@+id/fundFragment"
+        android:name="com.example.blueprint.ui.fund.FundFragment"
+        android:label="@string/label_fund"
+        tools:layout="@layout/fragment_fund" />
+    <fragment
+        android:id="@+id/productFragment"
+        android:name="com.example.blueprint.ui.product.ProductFragment"
+        android:label="@string/label_product"
+        tools:layout="@layout/fragment_product" />
+
+    <action
+        android:id="@+id/action_global_nav_home"
+        app:destination="@id/nav_home"
+        app:popUpTo="@id/mobile_navigation"
+        app:popUpToInclusive="false" />
+    <action
+        android:id="@+id/action_global_loginFragment"
+        app:destination="@id/loginFragment"
+        app:popUpTo="@id/mobile_navigation"
+        app:popUpToInclusive="false" />
+
 </navigation>
