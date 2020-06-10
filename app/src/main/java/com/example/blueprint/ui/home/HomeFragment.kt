@@ -48,7 +48,7 @@ class HomeFragment : Fragment() {
         })
 
         homeViewModel.fundAmount.observe(viewLifecycleOwner, Observer {
-            binding.tableFund.rightText = "${it ?: 0}"
+            binding.tableFund.rightText = "$${it ?: 0}"
         })
 
         homeViewModel.deleteComplete.observe(viewLifecycleOwner, Observer {

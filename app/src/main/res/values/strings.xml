@@ -12,6 +12,10 @@
     <string name="label_fund">Add Fund</string>
     <string name="label_product">Purchase Product</string>
     <string name="label_share">Share</string>
+    <string name="label_fund_available">Fund Available</string>
+    <string name="label_exit">Exit</string>
+    <string name="label_drinks">Drinks</string>
+    <string name="label_flowers">Flowers</string>
 
     <string name="hint_biometric">BiometricAuthenticate</string>
     <string name="hint_registration">Sign Up</string>
@@ -19,6 +23,7 @@
     <string name="hint_userName">User Name</string>
     <string name="hint_password">Password</string>
     <string name="hint_continue">Continue</string>
+    <string name="hint_cancel">Cancel</string>
     <string name="hint_dob">Pick Date of Birth</string>
     <string name="hint_gender">Pick Gender</string>
     <string name="hint_sign_up">Complete Registration</string>
@@ -31,8 +36,10 @@
     <string name="error_empty_user_name">Empty user name</string>
     <string name="error_empty_password">Empty password</string>
     <string name="error_incomplete_registration_info">Please Make sure all info are provided</string>
-    <string name="label_fund_available">Fund Available</string>
 
+    <string name="message_fund_offer">Lucky Bank decides to offer $%1$d. Would you want to accept</string>
+    <string name="message_warning_product_purchase_fail">Insufficient fund to purchase Product [%1$s] at price $[%2$d]</string>
+    <string name="message_product_purchase_success">Congrats on the new Product [%1$s] purchased at price $[%2$d]</string>
 
     <array name="gender_array">
         <item>Male</item>

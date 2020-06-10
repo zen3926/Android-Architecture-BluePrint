@@ -4,7 +4,7 @@ interface FundStoreProtocol {
     /**
      * Add fund to existing amount
      */
-    suspend fun addFund(amount: Int)
+    suspend fun addFund(amount: Int): Int
 
     /**
      * Check fund balance

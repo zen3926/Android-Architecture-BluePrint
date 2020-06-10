@@ -4,13 +4,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/button9"
-        android:layout_width="wrap_content"
+    <com.example.blueprint.view.PairDetailTable
+        android:id="@+id/tableFund"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="AddFund"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="@dimen/activity_vertical_margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:leftText="@string/label_fund_available" />
+
+    <Button
+        android:id="@+id/actionAddFund"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        android:text="@string/hint_add_fund"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tableFund" />
+
+    <Button
+        android:id="@+id/actionLeave"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        android:text="@string/label_exit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/actionAddFund" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

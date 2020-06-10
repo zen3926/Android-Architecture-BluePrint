@@ -21,10 +21,12 @@ class FundStore(context: Context) : FundStoreProtocol {
         )
     }
 
-    override suspend fun addFund(amount: Int) {
-        withContext(Dispatchers.IO) {
+    override suspend fun addFund(amount: Int): Int {
+        return withContext(Dispatchers.IO) {
             val oldAmount = checkFund()
-            preference.edit { putInt(KEY_FUND, oldAmount + amount) }
+            val newAmount = oldAmount + amount
+            preference.edit { putInt(KEY_FUND, newAmount) }
+            newAmount
         }
     }
 
