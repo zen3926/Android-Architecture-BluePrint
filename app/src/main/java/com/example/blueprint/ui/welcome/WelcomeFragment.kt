@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.blueprint.R
 import com.example.blueprint.databinding.FragmentWelcomeBinding
@@ -12,6 +14,9 @@ import com.example.blueprint.databinding.FragmentWelcomeBinding
 class WelcomeFragment : Fragment() {
 
     private lateinit var binding: FragmentWelcomeBinding
+    private val welcomeViewModel: WelcomeViewModel by viewModels {
+        WelcomeViewModel.Companion.Factory(requireContext())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,12 +28,16 @@ class WelcomeFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.button.setOnClickListener {
-            findNavController().navigate(R.id.action_global_loginFragment)
-        }
+        welcomeViewModel.userState.observe(viewLifecycleOwner, Observer {
+            it?.let { signedIn ->
+                when {
+                    signedIn -> findNavController().navigate(R.id.action_global_nav_home)
+                    else -> findNavController().navigate(R.id.action_global_loginFragment)
+                }
+                welcomeViewModel.onUserStateNavigationComplete()
+            }
+        })
 
-        binding.button2.setOnClickListener {
-            findNavController().navigate(R.id.action_global_nav_home)
-        }
+        welcomeViewModel.checkUserState()
     }
 }

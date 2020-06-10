@@ -12,4 +12,25 @@
     <string name="label_fund">Add Fund</string>
     <string name="label_product">Purchase Product</string>
     <string name="label_share">Share</string>
+
+    <string name="hint_biometric">BiometricAuthenticate</string>
+    <string name="hint_registration">Sign Up</string>
+    <string name="hint_sign_in">Sign In</string>
+    <string name="hint_userName">User Name</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_continue">Continue</string>
+    <string name="hint_dob">Pick Date of Birth</string>
+    <string name="hint_gender">Pick Gender</string>
+    <string name="hint_sign_up">Complete Registration</string>
+
+    <string name="error_sign_in">Sign In Unsuccessful</string>
+    <string name="error_empty_user_name">Empty user name</string>
+    <string name="error_empty_password">Empty password</string>
+    <string name="error_incomplete_registration_info">Please Make sure all info are provided</string>
+
+    <array name="gender_array">
+        <item>Male</item>
+        <item>Female</item>
+    </array>
+
 </resources>
