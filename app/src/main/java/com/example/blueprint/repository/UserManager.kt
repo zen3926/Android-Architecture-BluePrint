@@ -24,6 +24,11 @@ class UserManager(private val userDao: UserDao) {
      */
     suspend fun insertUser(user: User) = userDao.insertUser(user.asDatabaseModel())
 
+    /**
+     * Remove signed in user
+     */
+    suspend fun removeUser() = userDao.removeUser()
+
     companion object {
         /**
          * Get an instance of UserManager with context

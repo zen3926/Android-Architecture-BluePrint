@@ -22,11 +22,17 @@
     <string name="hint_dob">Pick Date of Birth</string>
     <string name="hint_gender">Pick Gender</string>
     <string name="hint_sign_up">Complete Registration</string>
+    <string name="hint_add_fund">Add Fund</string>
+    <string name="hint_product">View Product</string>
+    <string name="hint_sign_out">Sign Out</string>
+    <string name="hint_delete_user">Delete User</string>
 
     <string name="error_sign_in">Sign In Unsuccessful</string>
     <string name="error_empty_user_name">Empty user name</string>
     <string name="error_empty_password">Empty password</string>
     <string name="error_incomplete_registration_info">Please Make sure all info are provided</string>
+    <string name="label_fund_available">Fund Available</string>
+
 
     <array name="gender_array">
         <item>Male</item>

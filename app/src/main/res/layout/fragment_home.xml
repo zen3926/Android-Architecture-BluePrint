@@ -6,36 +6,68 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-    <Button
-        android:id="@+id/button6"
-        android:layout_width="wrap_content"
+    <com.example.blueprint.view.PairDetailTable
+        android:id="@+id/tableUser"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="SignOut"
-        app:layout_constraintBottom_toTopOf="@+id/button7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:leftText="@string/label_welcome" />
+
+    <com.example.blueprint.view.PairDetailTable
+        android:id="@+id/tableFund"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tableUser"
+        app:leftText="@string/label_fund_available" />
+
+    <Button
+        android:id="@+id/actionSignOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="@string/hint_sign_out"
+        app:layout_constraintBottom_toTopOf="@+id/actionDeleteUser"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableFund"
+        app:layout_constraintVertical_bias="0.0"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/actionDeleteUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Fund"
-        app:layout_constraintBottom_toTopOf="@+id/button8"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="@string/hint_delete_user"
+        app:layout_constraintBottom_toTopOf="@+id/actionViewProduct"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button6" />
+        app:layout_constraintTop_toBottomOf="@+id/actionSignOut" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/actionViewProduct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Purchase"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="@string/hint_product"
+        app:layout_constraintBottom_toTopOf="@+id/actionAddFund"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/actionDeleteUser" />
+
+    <Button
+        android:id="@+id/actionAddFund"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="@string/hint_add_fund"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button7" />
+        app:layout_constraintTop_toBottomOf="@+id/actionViewProduct" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.blueprint.R
 import com.example.blueprint.databinding.FragmentHomeBinding
@@ -12,6 +14,9 @@ import com.example.blueprint.databinding.FragmentHomeBinding
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
+    private val homeViewModel by viewModels<HomeViewModel> {
+        HomeViewModel.Companion.Factory(requireContext())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,8 +28,32 @@ class HomeFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.button6.setOnClickListener { findNavController().navigate(R.id.action_global_loginFragment) }
-        binding.button7.setOnClickListener { findNavController().navigate(R.id.action_nav_home_to_fundFragment) }
-        binding.button8.setOnClickListener { findNavController().navigate(R.id.action_nav_home_to_productFragment) }
+        configActions()
+        configObservers()
+    }
+
+    private fun configActions() {
+        binding.actionSignOut.setOnClickListener { findNavController().navigate(R.id.action_global_loginFragment) }
+        binding.actionDeleteUser.setOnClickListener {
+            homeViewModel.deleteUser()
+        }
+        binding.actionAddFund.setOnClickListener { findNavController().navigate(R.id.action_nav_home_to_fundFragment) }
+        binding.actionViewProduct.setOnClickListener { findNavController().navigate(R.id.action_nav_home_to_productFragment) }
+    }
+
+    private fun configObservers() {
+        homeViewModel.checkFund()
+        homeViewModel.userName.observe(viewLifecycleOwner, Observer {
+            binding.tableUser.rightText = it ?: getString(R.string.error_empty_user_name)
+        })
+
+        homeViewModel.fundAmount.observe(viewLifecycleOwner, Observer {
+            binding.tableFund.rightText = "${it ?: 0}"
+        })
+
+        homeViewModel.deleteComplete.observe(viewLifecycleOwner, Observer {
+            findNavController().navigate(R.id.action_global_loginFragment)
+            homeViewModel.onDeletionNavigationComplete()
+        })
     }
 }
