@@ -2,9 +2,12 @@ package com.example.blueprint.ui.login
 
 import android.content.DialogInterface
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.biometric.BiometricManager
+import androidx.biometric.BiometricPrompt
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -13,12 +16,16 @@ import androidx.navigation.fragment.findNavController
 import com.example.blueprint.R
 import com.example.blueprint.databinding.FragmentLoginBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import java.util.concurrent.Executor
 
 class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
     private val loginViewModel: LoginViewModel by viewModels {
         LoginViewModel.Companion.Factory(requireContext())
     }
+
+    private val handler = Handler()
+    private val executor = Executor { command -> handler.post(command) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,7 +58,7 @@ class LoginFragment : Fragment() {
         }
 
         binding.actionBiometric.setOnClickListener {
-            loginViewModel.authenticateUserSuccess()
+            showBiometric()
         }
 
         binding.actionToRegistration.setOnClickListener { findNavController().navigate(R.id.registrationFragment) }
@@ -59,7 +66,7 @@ class LoginFragment : Fragment() {
 
     private fun configViewModelObservers() {
         loginViewModel.hasUser.observe(viewLifecycleOwner, Observer { hasUser ->
-            binding.actionBiometric.isEnabled = hasUser == true
+            binding.actionBiometric.isEnabled = hasUser == true && isBioMetricEnabled()
         })
 
         loginViewModel.userState.observe(viewLifecycleOwner, Observer {
@@ -84,6 +91,26 @@ class LoginFragment : Fragment() {
             }
         })
     }
+
+    private fun showBiometric() {
+        val prompt = with(BiometricPrompt.PromptInfo.Builder()) {
+            setTitle(getString(R.string.message_biometric))
+            setNegativeButtonText(getString(R.string.hint_cancel))
+            setConfirmationRequired(true)
+        }.build()
+
+        val callback = object : BiometricPrompt.AuthenticationCallback() {
+            override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
+                loginViewModel.authenticateUserSuccess()
+            }
+        }
+        BiometricPrompt(this, executor, callback).authenticate(prompt)
+    }
+
+    private fun isBioMetricEnabled(): Boolean =
+        BiometricManager.from(requireContext().applicationContext)
+            .canAuthenticate() == BiometricManager.BIOMETRIC_SUCCESS
+
 
     private fun showAlert() {
         val dialog = MaterialAlertDialogBuilder(requireContext())

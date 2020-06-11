@@ -10,8 +10,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
+import androidx.work.WorkRequest
 import com.example.blueprint.R
 import com.example.blueprint.databinding.FragmentRegistrationBinding
+import com.example.blueprint.worker.SimpleWorker
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -72,10 +76,16 @@ class RegistrationFragment : Fragment() {
         })
         registrationViewModel.complete.observe(viewLifecycleOwner, Observer {
             if (it == true) {
+                showSimpleWorker()
                 findNavController().navigate(R.id.action_global_nav_home)
                 registrationViewModel.onRegistrationComplete()
             }
         })
+    }
+
+    private fun showSimpleWorker() {
+        val workRequest: WorkRequest = OneTimeWorkRequestBuilder<SimpleWorker>().build()
+        WorkManager.getInstance(requireContext()).enqueue(workRequest)
     }
 
     private fun showDatePicker() {

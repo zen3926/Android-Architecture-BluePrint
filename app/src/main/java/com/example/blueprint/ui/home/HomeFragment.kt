@@ -52,8 +52,10 @@ class HomeFragment : Fragment() {
         })
 
         homeViewModel.deleteComplete.observe(viewLifecycleOwner, Observer {
-            findNavController().navigate(R.id.action_global_loginFragment)
-            homeViewModel.onDeletionNavigationComplete()
+            if (it == true) {
+                findNavController().navigate(R.id.action_global_loginFragment)
+                homeViewModel.onDeletionNavigationComplete()
+            }
         })
     }
 }

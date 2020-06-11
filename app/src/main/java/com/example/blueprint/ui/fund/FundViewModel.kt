@@ -39,7 +39,7 @@ class FundViewModel(
      * Add random fund amount
      */
     fun addFund() {
-        val randomAmount = SecureRandom().nextInt(500)
+        val randomAmount = SecureRandom().nextInt(100)
         _fundOfferAmount.value = randomAmount
     }
 
