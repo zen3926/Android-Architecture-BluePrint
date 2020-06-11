@@ -14,7 +14,6 @@ import com.example.blueprint.repository.UserManager
 import com.example.blueprint.widget.MyWidgetProvider
 import com.example.blueprint.widget.MyWidgetService.Companion.KEY_WIDGET_ACTION
 import com.example.blueprint.widget.MyWidgetService.Companion.REQUEST_READ
-import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,9 +33,8 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.appBar.toolbar)
         checkIntent(intent)
 
-        binding.appBar.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+        binding.appBar.fab.setOnClickListener {
+            startShare()
         }
         val navController = findNavController(R.id.nav_host_fragment)
         // Passing each menu ID as a set of Ids because each
@@ -57,6 +55,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return item.onNavDestinationSelected(findNavController(R.id.nav_host_fragment))
+                || handleOtherAction(item)
                 || super.onOptionsItemSelected(item)
     }
 
@@ -68,6 +67,16 @@ class MainActivity : AppCompatActivity() {
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
         checkIntent(intent)
+    }
+
+    private fun handleOtherAction(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_share -> {
+                startShare()
+                true
+            }
+            else -> false
+        }
     }
 
     private fun checkIntent(intent: Intent?) {
@@ -82,5 +91,21 @@ class MainActivity : AppCompatActivity() {
         UserManager.getRepo(this).user.observe(this, Observer {
             MyWidgetProvider.updateWidget(this)
         })
+    }
+
+    private fun startShare() {
+        val intent = Intent(Intent.ACTION_SEND).apply {
+            type = "text/plain"
+            putExtra(Intent.EXTRA_EMAIL, "gzn3926@gmail.com")
+            putExtra(Intent.EXTRA_SUBJECT, "Android Architecture BluePrint")
+            putExtra(
+                Intent.EXTRA_TEXT,
+                "Check out GitHub Repo @ https://github.com/zen3926/Android-Architecture-BluePrint.git"
+            )
+        }
+
+        if (intent.resolveActivity(packageManager) != null) {
+            startActivity(intent)
+        }
     }
 }
