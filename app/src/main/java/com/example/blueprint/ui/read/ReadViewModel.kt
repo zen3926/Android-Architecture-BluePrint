@@ -37,38 +37,65 @@ class ReadViewModel : ViewModel() {
             append("https://github.com/zen3926/Android-Architecture-BluePrint.git\n\n")
 
 
-            append("This serves as a demo/blueprint for various Android components and Feature:\n")
+            append("This serves as a demo for various Android components, features and MVVM & Repository patterns:\n")
             buildContent()
             append("\n")
 
             append("Other 3rd-party dependent libraries used:\n")
             buildAdditionalLibrariesUsed()
+            append("\n")
+
+            append("Other note:\n")
+            buildOtherNotes()
+
+            append("\n")
+            append("References:\n")
+            buildReferences()
         }
     }
 
     private fun SpannableStringBuilder.buildContent() {
-        val contents = listOf<String>(
+        val contents = listOf(
             "Android App Components: [Activity, Services, Broadcast Receivers]",
             "Android Navigation Component: [Navigation Graph, Controller]",
             "Android Architecture Components: [View Binding, Data Binding, LiveData, Room, Work Manager, ViewModel, SaveStateHandle]",
             "View Components: [RecyclerView, CardView, ConstraintLayout, TextInputLayout, and many other Material View Components]",
-            "Additional Features: [App Widget, App Shortcut, Notification, Security Storage, Biometric Authentication]"
+            "Additional Features: [App Widget, App Shortcut, Notification, Security Storage, Biometric Authentication]",
+            "Many more"
         )
 
-        contents.forEach {
-            inSpans(BulletSpan(30, Color.BLUE)) { append(it) }
-            append("\n")
-        }
+        buildBullets(contents)
     }
 
     private fun SpannableStringBuilder.buildAdditionalLibrariesUsed() {
-        val contents = listOf<String>(
+        val contents = listOf(
             "Network: Retrofit 2",
             "Json parsing: Moshi",
             "Logging: Timber",
             "Image Loading: Glide",
             "Unit Testing: JUnit, Espresso, Truth, Mockk"
         )
+        buildBullets(contents)
+    }
+
+    private fun SpannableStringBuilder.buildOtherNotes() {
+        val contents = listOf(
+            "Kotlin and Coroutines",
+            "MVVM, Repository, and other patterns"
+        )
+        buildBullets(contents)
+    }
+
+    private fun SpannableStringBuilder.buildReferences() {
+        val contents = listOf(
+            "Guide to app architecture: https://developer.android.com/jetpack/docs/guide",
+            "Android Architecture Components: https://developer.android.com/topic/libraries/architecture",
+            "Navigation: https://developer.android.com/guide/navigation"
+        )
+        buildBullets(contents)
+    }
+
+    private fun SpannableStringBuilder.buildBullets(contents: List<String>) {
         contents.forEach {
             inSpans(BulletSpan(30, Color.BLUE)) { append(it) }
             append("\n")
