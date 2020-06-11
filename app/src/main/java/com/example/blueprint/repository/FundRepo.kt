@@ -5,7 +5,7 @@ import com.example.blueprint.file.FundStore
 import com.example.blueprint.file.FundStoreProtocol
 import com.example.blueprint.widget.WidgetFundUpdateObserver
 
-class FundRepo(
+class FundRepo private constructor(
     private val protocol: FundStoreProtocol,
     private val fundObserver: FundUpdateObserver
 ) {

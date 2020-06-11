@@ -41,6 +41,9 @@
     <string name="message_warning_product_purchase_fail">Insufficient fund to purchase Product [%1$s] at price $[%2$d]</string>
     <string name="message_product_purchase_success">Congrats on the new Product [%1$s] purchased at price $[%2$d]</string>
 
+    <string name="notification_channel">BluePrint Channel</string>
+    <string name="notification_channel_description">BluePrint Channel for fun</string>
+
     <array name="gender_array">
         <item>Male</item>
         <item>Female</item>

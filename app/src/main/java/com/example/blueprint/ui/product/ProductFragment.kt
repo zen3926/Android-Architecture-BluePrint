@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.blueprint.R
 import com.example.blueprint.databinding.FragmentProductBinding
 import com.example.blueprint.domain.model.Product
+import com.example.blueprint.notification.SimpleNotification
 
 class ProductFragment : Fragment() {
 
@@ -84,7 +85,7 @@ class ProductFragment : Fragment() {
     private fun presentResult(product: Product) {
         val message =
             getString(R.string.message_product_purchase_success, product.name, product.price)
-        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+        SimpleNotification.getInstance(requireContext()).createNotification(message)
         productViewModel.onPurchaseResultReceived()
     }
 

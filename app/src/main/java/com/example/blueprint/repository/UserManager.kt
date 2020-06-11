@@ -9,7 +9,7 @@ import com.example.blueprint.database.entity.asDomainModel
 import com.example.blueprint.domain.model.User
 import com.example.blueprint.domain.model.asDatabaseModel
 
-class UserManager(private val userDao: UserDao) {
+class UserManager private constructor(private val userDao: UserDao) {
     val user: LiveData<User> = Transformations.map(userDao.getUserLiveData()) {
         it?.asDomainModel()
     }
