@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:onClick="@{()-> processor.onProductSelected(product)}"
-        app:cardCornerRadius="@dimen/activity_vertical_margin"
+        app:cardCornerRadius="@dimen/default_view_margin"
         app:cardElevation="10dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -65,7 +65,7 @@
                 android:id="@+id/productPriceText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginTop="@dimen/default_view_margin"
                 android:gravity="center"
                 android:text='@{"$" + product.price}'
                 app:layout_constraintBottom_toBottomOf="parent"
