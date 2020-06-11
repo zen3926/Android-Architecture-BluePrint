@@ -12,9 +12,6 @@ interface FlowerDao {
     @Query("select * from DatabaseFlower")
     fun getFlowersLiveData(): LiveData<List<DatabaseFlower>>
 
-    @Query("select * from DatabaseFlower")
-    suspend fun getFlowers(): List<DatabaseFlower>
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(flowers: List<DatabaseFlower>)
 }

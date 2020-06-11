@@ -12,9 +12,6 @@ interface DrinkDao {
     @Query("select * from DatabaseDrink")
     fun getDrinksLiveData(): LiveData<List<DatabaseDrink>>
 
-    @Query("select * from DatabaseDrink")
-    fun getDrinks(): List<DatabaseDrink>
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(drinks: List<DatabaseDrink>)
 }

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    android:background="@color/blue"
+    android:divider="@drawable/divider_widget"
+    android:orientation="horizontal"
+    android:padding="8dp"
+    android:showDividers="middle"
+    tools:ignore="Overdraw"
+    tools:viewBindingIgnore="true">
+
+    <LinearLayout
+        android:id="@+id/widget_app"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:divider="@color/blue"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:showDividers="middle">
+
+        <TextView
+            android:id="@+id/widget_userNameText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            tools:text="@tools:sample/first_names" />
+
+        <TextView
+            android:id="@+id/widget_fundText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="4dp"
+            tools:text="$1000" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/widget_welcome"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:drawableTop="@drawable/ic_greet"
+        android:drawablePadding="8dp"
+        android:drawableTint="@color/colorAccent"
+        android:gravity="center"
+        android:text="@string/label_welcome" />
+
+    <TextView
+        android:id="@+id/widget_read"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:drawableTop="@drawable/ic_book"
+        android:drawablePadding="8dp"
+        android:drawableTint="@color/colorPrimaryDark"
+        android:gravity="center"
+        android:text="@string/label_read" />
+</LinearLayout>
