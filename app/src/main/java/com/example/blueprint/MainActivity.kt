@@ -30,9 +30,32 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setSupportActionBar(binding.appBar.toolbar)
         checkIntent(intent)
+        initNavComponents()
+    }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean =
+        item.onNavDestinationSelected(findNavController(R.id.nav_host_fragment))
+                || handleOtherAction(item)
+                || super.onOptionsItemSelected(item)
+
+    override fun onSupportNavigateUp(): Boolean =
+        findNavController(R.id.nav_host_fragment).navigateUp(appBarConfiguration)
+                || super.onSupportNavigateUp()
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        checkIntent(intent)
+    }
+
+    private fun initNavComponents() {
+        setSupportActionBar(binding.appBar.toolbar)
         binding.appBar.fab.setOnClickListener {
             startShare()
         }
@@ -47,36 +70,12 @@ class MainActivity : AppCompatActivity() {
         binding.navView.setupWithNavController(navController)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return item.onNavDestinationSelected(findNavController(R.id.nav_host_fragment))
-                || handleOtherAction(item)
-                || super.onOptionsItemSelected(item)
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        return findNavController(R.id.nav_host_fragment).navigateUp(appBarConfiguration)
-                || super.onSupportNavigateUp()
-    }
-
-    override fun onNewIntent(intent: Intent?) {
-        super.onNewIntent(intent)
-        checkIntent(intent)
-    }
-
-    private fun handleOtherAction(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_share -> {
-                startShare()
-                true
-            }
-            else -> false
+    private fun handleOtherAction(item: MenuItem): Boolean = when (item.itemId) {
+        R.id.action_share -> {
+            startShare()
+            true
         }
+        else -> false
     }
 
     private fun checkIntent(intent: Intent?) {

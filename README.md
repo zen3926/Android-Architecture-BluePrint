@@ -1,5 +1,4 @@
-# Android Architecture BluePrint
-
+# Android Architecture BluePrint Summary
 This serves as a demo for various Android components, features and MVVM & Repository patterns
 
 ---
